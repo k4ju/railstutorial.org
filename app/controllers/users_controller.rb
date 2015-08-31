@@ -12,9 +12,17 @@ class UsersController < ApplicationController
   end
   
   def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "You've successfully updated your data"
+      redirect_to user_url(@user)
+    else
+      render 'edit'
+    end
   end
   
   def edit
+    @user = User.find(params[:id])
   end
   
   def destroy

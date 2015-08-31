@@ -1,7 +1,7 @@
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-      The <%= pluralize(@user.errors.count, "error") %>, watch out!
+      The form has <%= pluralize(@user.errors.count, "error") %>, watch out!
     </div>
     <ul>
     <% @user.errors.full_messages.each do |msg| %>
