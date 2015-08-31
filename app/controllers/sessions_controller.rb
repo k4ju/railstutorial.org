@@ -3,12 +3,12 @@ class SessionsController < ApplicationController
   end
   
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
+    @user = User.find_by(email: params[:session][:email].downcase)
     
-    if user && user.authenticate(params[:session][:password])
-      log_in(user)
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to user_url(user)
+    if @user && @user.authenticate(params[:session][:password])
+      log_in(@user)
+      params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
+      redirect_to user_url(@user)
     else
       flash.now[:danger] = 'Twoje dane są inwalidami.'
       render 'new'
